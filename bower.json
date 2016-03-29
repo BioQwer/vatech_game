@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.1",
-    "bootstrap-material-design": "master"
+    "bootstrap-material-design": "master",
+    "angular": "^1.5.3",
+    "bootstrap": "^3.3.6"
   }
 }
