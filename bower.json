@@ -1,0 +1,8 @@
+{
+  "name": "webapp",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap-material-design": "master"
+  }
+}
