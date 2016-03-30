@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,6 @@
   <link rel="icon" href="favicon.ico">
 
   <title>VATECH Game</title>
-
   <link href="styles/bootstrap_compiled.css" rel="stylesheet">
   <link href="styles/sticky-footer-navbar.css" rel="stylesheet">
 </head>
@@ -27,33 +26,9 @@
 
 <!-- Begin page content -->
 <div class="container">
-  <nav class=" navbar">
-    <div class="container">
-      <div class="navbar-header">
-
-        <h1 style="color: white" align="center">Приглашаем Вас принять участие в игре от VATECH</h1>
-        <a href="private">asdasd</a>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid jumbotron">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-4">
-            <img src="images/ezsensor.png" class=" img-responsive">
-          </div>
-          <div class="col-md-4">
-            <img src="images/comp.png" class=" img-responsive">
-          </div>
-          <div class="col-md-4">
-            <img src="images/flex.png" class=" img-responsive">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div ng-app="app" ng-view></div>
 </div>
+
 
 <footer class="footer">
   <div class="container">
@@ -67,6 +42,7 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <script src="scripts/app.js"></script>
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
