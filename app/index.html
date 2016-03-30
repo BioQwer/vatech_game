@@ -8,32 +8,28 @@
   <meta name="author" content="">
   <link rel="icon" href="favicon.ico">
 
-  <title>Sticky Footer Navbar Template for Bootstrap</title>
+  <title>VATECH Game</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <link href="styles/bootstrap_compiled.css" rel="stylesheet">
   <link href="styles/sticky-footer-navbar.css" rel="stylesheet">
-  <link href="styles/main.css" rel="stylesheet">
-  <link href="styles/cover.css" rel="stylesheet">
-
 </head>
 
 <body>
 
 <!-- Fixed navbar -->
-<nav id="main-nav" class="navbar-default navbar-fixed-top nav-custom">
+<nav class=" navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">VATECH</a>
+
+      <img src="images/company.png"/>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-      </ul>
+
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+
 
 <!-- Begin page content -->
 <div class="container">
@@ -42,24 +38,20 @@
   </div>
   <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and
     CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>
-  <p>Back to <a href="#">the default sticky footer</a> minus the navbar.</p>
+  <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
 </div>
 
-<footer class="footer">
+<footer class="footer panel-footer fix">
   <div class="container">
     <p class="text-muted" align="center">©2016 VATECH. All Rights Reserved.</p>
   </div>
 </footer>
 
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="bower_components/bootstrap/assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="bower_components/bootstrap/assets/js/vendor/jquery.js"><\/script>')</script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="bower_components/bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
