@@ -2,19 +2,22 @@
 'use strict';
 (function () {
 
-  var app = angular.module('app', ['ngRoute']);
+  var app = angular.module('app', ['ngRoute', 'ng']);
+
 
   app.config(['$routeProvider',
     function ($routeProvider) {
+
       $routeProvider
         .when('/game', {
           templateUrl: 'templates/game.html',
           controller: 'WelcomeController'
         })
-        .otherwise({
-        templateUrl: 'templates/welcome.html',
-        controller: 'WelcomeController'
-      });
+        .when('/', {
+          templateUrl: 'templates/welcome.html',
+          controller: 'WelcomeController'
+        })
+        .otherwise({redirectTo: '/'});
     }]);
 
 
