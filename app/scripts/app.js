@@ -1,14 +1,17 @@
+/* global angular */
+'use strict';
 (function () {
 
-  var app = angular.module("app", ['ngRoute']);
+  var app = angular.module('app', ['ngRoute']);
 
   app.config(['$routeProvider',
     function ($routeProvider) {
       $routeProvider
-        .when('private', {
-          templateUrl: 'private',
+        .when('/game', {
+          templateUrl: 'templates/game.html',
           controller: 'WelcomeController'
-        }).otherwise({
+        })
+        .otherwise({
         templateUrl: 'templates/welcome.html',
         controller: 'WelcomeController'
       });
@@ -18,7 +21,7 @@
   app.controller('WelcomeController', function ($scope) {
 
     $scope.message = 'This is Add new order screen';
-    console.log("sadasd");
+    console.log('sadasd');
 
   });
 
