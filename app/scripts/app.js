@@ -33,7 +33,14 @@ function compareRandom(a, b) {
 
 (function () {
 
-  var app = angular.module('app', ['ngRoute', 'ng']);
+  var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate']);
+
+  app.run(['$rootScope', '$location', function ($rootScope, $location) {
+
+    $location.path('/');
+
+    $rootScope.appInitialized = true;
+  }]);
 
   app.config(['$routeProvider',
     function ($routeProvider) {
@@ -61,14 +68,15 @@ function compareRandom(a, b) {
   app.controller('FailController',
     ['$scope', '$window', function ($scope, $window) {
 
+      $scope.redirect = '/'
       $scope.redirect = function () {
         $window.location.href = '#/game';
       };
     }]);
 
   app.controller('WinController',
-    [ function () {
-        $('#winImage').attr('src',winImage);
+    [function () {
+      $('#winImage').attr('src', winImage);
 
     }]);
 
