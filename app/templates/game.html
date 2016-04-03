@@ -9,12 +9,61 @@
     </div>
   </nav>
   <div class="row">
-    <div class="col-md-4">
-      <div id="DateCountdown" data-timer="15" style="width: 100%;"></div>
-      <countdown timer="timer" radius="15" stroke="5"></countdown>
+    <div class="container">
+      <h2>Clock example</h2>
+      <div class="progress-wrapper">
+        <div class="progress ng-cloak" ng-style="getStyle()">{{ time }}</div>
+        <div
+          round-progress
+          max="24"
+          current="hours"
+          color="#45ccce"
+          bgcolor="transparent"
+          radius="{{ radius*1.5 }}"
+          semi="isSemi"
+          rounded="rounded"
+          clockwise="clockwise"
+          responsive="responsive"
+          stroke="{{ stroke*1.5 }}"
+          animation="{{ currentAnimation }}">
+
+          <div
+            round-progress
+            max="59"
+            current="minutes"
+            color="#0971B2"
+            bgcolor="transparent"
+            radius="{{ radius*1.5 }}"
+            semi="isSemi"
+            rounded="rounded"
+            clockwise="clockwise"
+            responsive="responsive"
+            stroke="{{ stroke*1.5 }}"
+            animation="{{ currentAnimation }}"
+            offset="inherit">
+
+
+            <div
+              round-progress
+              max="59"
+              current="seconds"
+              color="#1485CC"
+              bgcolor="transparent"
+              radius="{{ radius*1.5 }}"
+              semi="isSemi"
+              rounded="rounded"
+              clockwise="clockwise"
+              responsive="responsive"
+              stroke="{{ stroke*1.5 }}"
+              animation="{{ currentAnimation }}"
+              offset="inherit"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-8">.col-md-8</div>
   </div>
+  <div class="col-md-8">.col-md-8</div>
+</div>
 
 
 </div>
