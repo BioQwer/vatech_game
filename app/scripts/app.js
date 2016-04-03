@@ -22,7 +22,7 @@ var imagesIds = [
 var winImage;
 
 function randomInteger(min, max) {
-  var rand = min - 0.5 + Math.random() * (max - min + 1)
+  var rand = min - 0.5 + Math.random() * (max - min + 1);
   rand = Math.round(rand);
   return rand;
 }
@@ -67,7 +67,7 @@ function compareRandom(a, b) {
     }]);
 
   app.controller('WinController',
-    ['$scope', '$window', function ($scope, $window) {
+    [ function () {
         $('#winImage').attr('src',winImage);
 
     }]);
@@ -123,8 +123,6 @@ function compareRandom(a, b) {
         console.log(item);
         console.log(path);
       });
-
-
 
       countdown.start();
       console.log('timer start');
