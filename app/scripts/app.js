@@ -1,10 +1,6 @@
 /* global angular */
 'use strict';
 
-$("#countdown").click(function () {
-  countdown.extendTimer(2);
-});
-
 (function () {
 
   var app = angular.module('app', ['ngRoute', 'ng']);
@@ -22,39 +18,49 @@ $("#countdown").click(function () {
           templateUrl: 'templates/welcome.html',
           controller: 'WelcomeController'
         })
+        .when('/fail', {
+          templateUrl: 'templates/fail.html',
+          controller: 'FailController'
+        })
         .otherwise({redirectTo: '/'});
     }]);
 
+  app.controller('FailController',
+    ['$scope', '$window', function ($scope, $window) {
+
+      $scope.redirect = function () {
+        $window.location.href = '#/game';
+      };
+
+
+    }]);
 
   app.controller('WelcomeController', function ($scope) {
-
-    $scope.message = 'This is Add new order screen';
-    console.log('sadasd');
-
+    console.log('WelcomeController Enter point');
   });
-
-
+  
   app.controller('GameController',
-    ['$scope','$window', function ($scope,$window) {
+    ['$scope', '$window', function ($scope, $window) {
 
       var width = $(".col-md-4").width();
-        console.log(width)
 
-      var countdown = $("#countdown").countdown360({
-        radius: width/2.5,
-        seconds: 15,
-        label: ['sec', 'secs'],
-        strokeStyle: "#26d7ae",
-        fontColor: 'white',
-        fillStyle: 'black',
-        fontWeight: 100,
-        onComplete: function () {
-          console.log('done');
-          $window.location.href = '/';
-        }
-      });
+      var countdown = $("#countdown")
+        .countdown360({
+          radius: width / 2.5,
+          seconds: 3,
+          label: ['sec', 'secs'],
+          strokeStyle: "#26d7ae",
+          fontColor: 'white',
+          fillStyle: 'black',
+          fontWeight: 100,
+          onComplete: function () {
+            $window.location.href = '#/fail';
+            console.log('timer done');
+            countdown.addSeconds(100000000);
+          }
+        });
 
       countdown.start();
-
+      console.log('timer start');
     }]);
 })();
