@@ -19,6 +19,8 @@ var imagesIds = [
   'img-6'
 ];
 
+var winImage;
+
 function randomInteger(min, max) {
   var rand = min - 0.5 + Math.random() * (max - min + 1)
   rand = Math.round(rand);
@@ -41,6 +43,10 @@ function compareRandom(a, b) {
           templateUrl: 'templates/game.html',
           controller: 'GameController'
         })
+        .when('/win', {
+          templateUrl: 'templates/win.html',
+          controller: 'WinController'
+        })
         .when('/', {
           templateUrl: 'templates/welcome.html',
           controller: 'WelcomeController'
@@ -60,6 +66,12 @@ function compareRandom(a, b) {
       };
     }]);
 
+  app.controller('WinController',
+    ['$scope', '$window', function ($scope, $window) {
+        $('#winImage').attr('src',winImage);
+
+    }]);
+
   app.controller('WelcomeController', function ($scope) {
     console.log('WelcomeController Enter point');
   });
@@ -68,28 +80,6 @@ function compareRandom(a, b) {
     ['$scope', '$window', function ($scope, $window) {
 
       var width = $("#timerkeeper").width();
-
-      pictures.sort(compareRandom);
-
-      var folder = randomInteger(1, 3);
-      imagesIds.forEach(function (item, i) {
-        var path = 'images/' + folder + '/' + pictures[i];
-
-        var imageOnPage = $('#' + item);
-        imageOnPage.attr('src', path);
-
-        if (path.match('.*win.*')) {
-          console.log('win  = ' + path)
-          imageOnPage.click(function () {
-          })
-        } else {
-          imageOnPage.click(function () {
-            $window.location.href = '#/fail';
-          })
-        }
-        console.log(item);
-        console.log(path);
-      });
 
       var countdown = $("#countdown")
         .countdown360({
@@ -106,6 +96,35 @@ function compareRandom(a, b) {
             countdown.addSeconds(100000000);
           }
         });
+
+
+      pictures.sort(compareRandom);
+
+      var folder = randomInteger(1, 3);
+      imagesIds.forEach(function (item, i) {
+        var path = 'images/' + folder + '/' + pictures[i];
+
+        var imageOnPage = $('#' + item);
+        imageOnPage.attr('src', path);
+
+        if (path.match('.*win.*')) {
+          console.log('win  = ' + path);
+          imageOnPage.click(function () {
+            winImage = path;
+            $window.location.href = '#/win';
+            countdown.addSeconds(100000000);
+          })
+        } else {
+          imageOnPage.click(function () {
+            $window.location.href = '#/fail';
+            countdown.addSeconds(100000000);
+          })
+        }
+        console.log(item);
+        console.log(path);
+      });
+
+
 
       countdown.start();
       console.log('timer start');
