@@ -33,7 +33,7 @@ function compareRandom(a, b) {
 
 (function () {
 
-  var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate']);
+  var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio']);
 
   app.run(['$rootScope', '$location', function ($rootScope, $location) {
 
@@ -65,27 +65,53 @@ function compareRandom(a, b) {
         .otherwise({redirectTo: '/'});
     }]);
 
-  app.controller('FailController',
-    ['$scope', '$window', function ($scope, $window) {
+  app.controller('FailController', function ($scope, $window, ngAudio) {
 
-      $scope.redirect = '/'
-      $scope.redirect = function () {
-        $window.location.href = '#/game';
-      };
-    }]);
+    $scope.redirect = function () {
+      $window.location.href = '#/game';
+    };
+
+    console.log($scope);
+    $scope.sound = ngAudio.load("../audio/fail.mp3"); // returns NgAudioObject
+
+    $scope.sound.play();
+
+    $scope.$on("$destroy", function () {
+      $scope.sound.stop();
+    });
+  });
 
   app.controller('WinController',
-    [function () {
+    function ($scope, ngAudio) {
+      
       $('#winImage').attr('src', winImage);
+      console.log($scope);
 
-    }]);
+      $scope.sound = ngAudio.load("../audio/win.mp3"); // returns NgAudioObject
 
-  app.controller('WelcomeController', function ($scope) {
-    console.log('WelcomeController Enter point');
+      $scope.sound.play();
+
+      $scope.$on("$destroy", function () {
+        $scope.sound.stop();
+      });
+    });
+
+  app.controller('WelcomeController', function ($scope, ngAudio) {
+    $scope.sound = ngAudio.load("../audio/welcome.mp3"); // returns NgAudioObject
+
+    $scope.sound.play();
+
+    $scope.$on("$destroy", function () {
+      $scope.sound.stop();
+    });
   });
 
   app.controller('GameController',
-    ['$scope', '$window', function ($scope, $window) {
+    function ($scope, $window, ngAudio) {
+
+      $scope.sound = ngAudio.load("../audio/waiting.mp3"); // returns NgAudioObject
+
+      $scope.sound.play();
 
       var width = $("#timerkeeper").width();
 
@@ -104,7 +130,6 @@ function compareRandom(a, b) {
             countdown.addSeconds(100000000);
           }
         });
-
 
       pictures.sort(compareRandom);
 
@@ -134,5 +159,9 @@ function compareRandom(a, b) {
 
       countdown.start();
       console.log('timer start');
-    }]);
+
+      $scope.$on("$destroy", function () {
+        $scope.sound.stop();
+      });
+    });
 })();
