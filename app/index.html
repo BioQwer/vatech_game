@@ -25,8 +25,9 @@
 </nav>
 
 <!-- Begin page content -->
-<div class="container">
-  <div ng-app="app" ng-view></div>
+<div class="container" ng-app="app">
+  <div ng-view></div>
+  <button ng-controller="SoundController as vm" class="btn btn-neutral ng-binding" ng-click="vm.changeMute()">Mute</button>
 </div>
 
 

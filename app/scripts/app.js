@@ -1,46 +1,49 @@
 /* global angular */
 'use strict';
 
-var pictures = [
-  'picture1.jpg',
-  'picture2.jpg',
-  'picture3.jpg',
-  'picture4.jpg',
-  'win.jpg',
-  'win2.jpg'
-];
-
-var imagesIds = [
-  'img-1',
-  'img-2',
-  'img-3',
-  'img-4',
-  'img-5',
-  'img-6'
-];
-
-var winImage;
-
-function randomInteger(min, max) {
-  var rand = min - 0.5 + Math.random() * (max - min + 1);
-  rand = Math.round(rand);
-  return rand;
-}
-
-function compareRandom(a, b) {
-  return Math.random() - 0.5;
-}
-
 (function () {
+
+  var pictures = [
+    'picture1.jpg',
+    'picture2.jpg',
+    'picture3.jpg',
+    'picture4.jpg',
+    'win.jpg',
+    'win2.jpg'
+  ];
+
+  var imagesIds = [
+    'img-1',
+    'img-2',
+    'img-3',
+    'img-4',
+    'img-5',
+    'img-6'
+  ];
+
+  var winImage, globalVolume = 1, currentSound;
+
+  function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1);
+    rand = Math.round(rand);
+    return rand;
+  }
+
+  function compareRandom(a, b) {
+    return Math.random() - 0.5;
+  }
 
   var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio']);
 
-  app.run(['$rootScope', '$location', function ($rootScope, $location) {
+  app.run(function ($rootScope, $location, $templateCache) {
 
     $location.path('/');
-
+    $templateCache.put('welcome.html', 'This is the content of the template');
+    $templateCache.put('game.html', 'This is the content of the template');
+    $templateCache.put('fail.html', 'This is the content of the template');
+    $templateCache.put('win.html', 'This is the content of the template');
     $rootScope.appInitialized = true;
-  }]);
+  });
 
   app.config(['$routeProvider',
     function ($routeProvider) {
@@ -72,46 +75,56 @@ function compareRandom(a, b) {
     };
 
     console.log($scope);
-    $scope.sound = ngAudio.load("../audio/fail.mp3"); // returns NgAudioObject
-
-    $scope.sound.play();
+    currentSound = ngAudio.play("../audio/fail.mp3"); // returns NgAudioObject
+    currentSound.volume = globalVolume;
 
     $scope.$on("$destroy", function () {
-      $scope.sound.stop();
+      currentSound.stop();
     });
   });
 
   app.controller('WinController',
     function ($scope, ngAudio) {
-      
+
       $('#winImage').attr('src', winImage);
       console.log($scope);
 
-      $scope.sound = ngAudio.load("../audio/win.mp3"); // returns NgAudioObject
-
-      $scope.sound.play();
+      currentSound = ngAudio.play("../audio/win.mp3"); // returns NgAudioObject
+      currentSound.volume = globalVolume;
 
       $scope.$on("$destroy", function () {
-        $scope.sound.stop();
+        currentSound.stop();
       });
     });
 
   app.controller('WelcomeController', function ($scope, ngAudio) {
-    $scope.sound = ngAudio.load("../audio/welcome.mp3"); // returns NgAudioObject
+    $scope.sound = ngAudio.play("../audio/welcome.mp3"); // returns NgAudioObject
+    $scope.sound.volume = globalVolume;
 
-    $scope.sound.play();
+    currentSound = $scope.sound;
 
     $scope.$on("$destroy", function () {
-      $scope.sound.stop();
+      currentSound.stop();
     });
+  });
+
+  app.controller('SoundController', function () {
+    this.changeMute = function () {
+      if (globalVolume > 0) {
+        globalVolume = 0;
+        currentSound.volume = globalVolume;
+      } else {
+        globalVolume = 1;
+        currentSound.volume = globalVolume;
+      }
+    }
   });
 
   app.controller('GameController',
     function ($scope, $window, ngAudio) {
 
-      $scope.sound = ngAudio.load("../audio/waiting.mp3"); // returns NgAudioObject
-
-      $scope.sound.play();
+      currentSound = ngAudio.play("../audio/waiting.mp3"); // returns NgAudioObject
+      currentSound.volume = globalVolume;
 
       var width = $("#timerkeeper").width();
 
@@ -161,7 +174,7 @@ function compareRandom(a, b) {
       console.log('timer start');
 
       $scope.$on("$destroy", function () {
-        $scope.sound.stop();
+        currentSound.stop();
       });
     });
 })();
