@@ -84,10 +84,14 @@
   });
 
   app.controller('WinController',
-    function ($scope, ngAudio) {
+    function ($scope, ngAudio, $window) {
 
       $('#winImage').attr('src', winImage);
       console.log($scope);
+
+      $scope.redirect = function () {
+        $window.location.href = '#/game';
+      };
 
       currentSound = ngAudio.play("../audio/win.mp3"); // returns NgAudioObject
       currentSound.volume = globalVolume;
