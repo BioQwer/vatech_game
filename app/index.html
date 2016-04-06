@@ -27,7 +27,8 @@
 <!-- Begin page content -->
 <div class="container" ng-app="app">
   <div ng-view></div>
-  <button ng-controller="SoundController as vm" class="btn btn-neutral ng-binding" ng-click="vm.changeMute()">Mute</button>
+  <br>
+  <button ng-controller="SoundController as vm" class="btn btn-neutral" ng-click="vm.changeMute()">{{vm.changeTo}}</button>
 </div>
 
 

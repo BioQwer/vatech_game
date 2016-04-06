@@ -113,6 +113,17 @@
   });
 
   app.controller('SoundController', function () {
+
+    this.checkState = function () {
+      if (globalVolume > 0) {
+        this.changeTo = 'Mute'
+      } else {
+        this.changeTo = 'Unmute'
+      }
+    };
+
+    this.checkState();
+
     this.changeMute = function () {
       if (globalVolume > 0) {
         globalVolume = 0;
@@ -121,6 +132,7 @@
         globalVolume = 1;
         currentSound.volume = globalVolume;
       }
+      this.checkState();
     }
   });
 
@@ -144,7 +156,9 @@
           onComplete: function () {
             $window.location.href = '#/fail';
             console.log('timer done');
-            countdown.addSeconds(100000000);
+            setTimeout(function () {
+              countdown.addSeconds(100000000);
+            }, 3000);
           }
         });
 
@@ -162,12 +176,16 @@
           imageOnPage.click(function () {
             winImage = path;
             $window.location.href = '#/win';
-            countdown.addSeconds(100000000);
+            setTimeout(function () {
+              countdown.addSeconds(100000000);
+            }, 3000);
           })
         } else {
           imageOnPage.click(function () {
             $window.location.href = '#/fail';
-            countdown.addSeconds(100000000);
+            setTimeout(function () {
+              countdown.addSeconds(100000000);
+            }, 3000);
           })
         }
         console.log(item);
