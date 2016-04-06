@@ -147,7 +147,7 @@
       var countdown = $("#countdown")
         .countdown360({
           radius: width / 2.5,
-          seconds: 15,
+          seconds: 35,
           label: ['sec', 'secs'],
           strokeStyle: "#26d7ae",
           fontColor: 'white',
@@ -158,7 +158,7 @@
             console.log('timer done');
             setTimeout(function () {
               countdown.addSeconds(100000000);
-            }, 3000);
+            }, 500);
           }
         });
 
@@ -178,14 +178,14 @@
             $window.location.href = '#/win';
             setTimeout(function () {
               countdown.addSeconds(100000000);
-            }, 3000);
+            }, 500);
           })
         } else {
           imageOnPage.click(function () {
             $window.location.href = '#/fail';
             setTimeout(function () {
               countdown.addSeconds(100000000);
-            }, 3000);
+            }, 500);
           })
         }
         console.log(item);
