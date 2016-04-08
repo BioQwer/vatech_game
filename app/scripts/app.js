@@ -35,7 +35,7 @@
 
   var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio']);
 
-  app.run(function ($rootScope, $location, $templateCache) {
+  app.run(['$rootScope', '$location', '$templateCache', function ($rootScope, $location, $templateCache) {
 
     $location.path('/');
     $templateCache.put('templates/welcome.html');
@@ -43,32 +43,31 @@
     $templateCache.put('templates/fail.html');
     $templateCache.put('templates/win.html');
     $rootScope.appInitialized = true;
-  });
+  }]);
 
-  app.config(['$routeProvider',
-    function ($routeProvider) {
+  app.config(['$routeProvider', function ($routeProvider) {
 
-      $routeProvider
-        .when('/game', {
-          templateUrl: 'templates/game.html',
-          controller: 'GameController'
-        })
-        .when('/win', {
-          templateUrl: 'templates/win.html',
-          controller: 'WinController'
-        })
-        .when('/', {
-          templateUrl: 'templates/welcome.html',
-          controller: 'WelcomeController'
-        })
-        .when('/fail', {
-          templateUrl: 'templates/fail.html',
-          controller: 'FailController'
-        })
-        .otherwise({redirectTo: '/'});
-    }]);
+    $routeProvider
+      .when('/game', {
+        templateUrl: 'templates/game.html',
+        controller: 'GameController'
+      })
+      .when('/win', {
+        templateUrl: 'templates/win.html',
+        controller: 'WinController'
+      })
+      .when('/', {
+        templateUrl: 'templates/welcome.html',
+        controller: 'WelcomeController'
+      })
+      .when('/fail', {
+        templateUrl: 'templates/fail.html',
+        controller: 'FailController'
+      })
+      .otherwise({redirectTo: '/'});
+  }]);
 
-  app.controller('FailController', function ($scope, $window, ngAudio) {
+  app.controller('FailController', ['$scope', '$window', 'ngAudio', function ($scope, $window, ngAudio) {
 
     $scope.redirect = function () {
       $window.location.href = '#/game';
@@ -81,10 +80,10 @@
     $scope.$on("$destroy", function () {
       currentSound.stop();
     });
-  });
+  }]);
 
   app.controller('WinController',
-    function ($scope, ngAudio, $window) {
+    ['$scope', 'ngAudio', '$window', function ($scope, ngAudio, $window) {
 
       $('#winImage').attr('src', winImage);
       console.log($scope);
@@ -99,9 +98,9 @@
       $scope.$on("$destroy", function () {
         currentSound.stop();
       });
-    });
+    }]);
 
-  app.controller('WelcomeController', function ($scope, ngAudio) {
+  app.controller('WelcomeController', ['$scope', 'ngAudio', function ($scope, ngAudio) {
     $scope.sound = ngAudio.play("../audio/welcome.mp3"); // returns NgAudioObject
     $scope.sound.volume = globalVolume;
 
@@ -110,7 +109,7 @@
     $scope.$on("$destroy", function () {
       currentSound.stop();
     });
-  });
+  }]);
 
   app.controller('SoundController', function () {
 
@@ -137,7 +136,7 @@
   });
 
   app.controller('GameController',
-    function ($scope, $window, ngAudio) {
+    ['$scope', '$window', 'ngAudio', function ($scope, $window, ngAudio) {
 
       currentSound = ngAudio.play("../audio/waiting.mp3"); // returns NgAudioObject
       currentSound.volume = globalVolume;
@@ -198,5 +197,5 @@
       $scope.$on("$destroy", function () {
         currentSound.stop();
       });
-    });
+    }]);
 })();
