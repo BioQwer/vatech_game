@@ -156,9 +156,9 @@ gulp.task('serve:test', ['scripts'], () => {
 // inject bower components
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
-    /*.pipe(wiredep({
-      ignorePath: /^(\.\.\/)+/
-    }))*/
+    .pipe(wiredep({
+     ignorePath: /^(\.\.\/)+/
+     }))
     .pipe(gulp.dest('app/styles'));
 
   gulp.src('app/*.html')
@@ -168,7 +168,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras', 'wiredep','templates'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'extras', 'wiredep', 'templates'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
