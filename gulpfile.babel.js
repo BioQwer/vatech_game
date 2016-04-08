@@ -168,10 +168,18 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras', 'wiredep', 'templates'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'extras', 'wiredep', 'templates', 'audio'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
+});
+
+gulp.task('audio', () => {
+  return gulp.src([
+    'app/audio/*.*'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/audio'));
 });
