@@ -95,7 +95,7 @@ gulp.task('extras', () => {
     '!app/*.html'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'));
+  }).pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
@@ -115,6 +115,8 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   gulp.watch([
     'app/*.html',
     'app/images/**/*',
+    'app/templates/*',
+    'app/resources/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
@@ -157,8 +159,8 @@ gulp.task('serve:test', ['scripts'], () => {
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
-     ignorePath: /^(\.\.\/)+/
-     }))
+      ignorePath: /^(\.\.\/)+/
+    }))
     .pipe(gulp.dest('app/styles'));
 
   gulp.src('app/*.html')
@@ -168,9 +170,18 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras', 'wiredep', 'templates', 'audio'], () => {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
-});
+gulp.task('build',
+  ['html',
+    'images',
+    'fonts',
+    'extras',
+    'wiredep',
+    'templates',
+    'audio',
+    'resources'],
+  () => {
+    return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  });
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
@@ -182,4 +193,12 @@ gulp.task('audio', () => {
   ], {
     dot: true
   }).pipe(gulp.dest('dist/audio'));
+});
+
+gulp.task('resources', () => {
+  return gulp.src([
+    'app/resources/*.*'
+  ], {
+    dot: true
+  }).pipe(gulp.dest('dist/resources'));
 });
