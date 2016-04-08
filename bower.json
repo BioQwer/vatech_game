@@ -3,12 +3,9 @@
   "private": true,
   "dependencies": {
     "jquery": "~2.1.1",
-    "bootstrap-material-design": "master",
     "angular": "^1.5.3",
     "bootstrap": "^3.3.6",
     "angular-route": "^1.5.3",
-    "timecircles": "^1.5.3",
-    "angular-svg-round-progressbar": "^0.4.2",
     "countdown360": "johnschult/jquery.countdown360#^0.1.5",
     "angular-animate": "^1.5.3",
     "angular-audio": "^1.7.1"

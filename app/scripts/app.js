@@ -38,10 +38,10 @@
   app.run(function ($rootScope, $location, $templateCache) {
 
     $location.path('/');
-    $templateCache.put('welcome.html', 'This is the content of the template');
-    $templateCache.put('game.html', 'This is the content of the template');
-    $templateCache.put('fail.html', 'This is the content of the template');
-    $templateCache.put('win.html', 'This is the content of the template');
+    $templateCache.put('templates/welcome.html');
+    $templateCache.put('templates/game.html');
+    $templateCache.put('templates/fail.html');
+    $templateCache.put('templates/win.html');
     $rootScope.appInitialized = true;
   });
 
