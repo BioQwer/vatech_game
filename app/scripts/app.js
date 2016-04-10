@@ -74,7 +74,7 @@
     };
 
     console.log($scope);
-    currentSound = ngAudio.play("../audio/fail.mp3"); // returns NgAudioObject
+    currentSound = ngAudio.play("audio/fail.mp3"); // returns NgAudioObject
     currentSound.volume = globalVolume;
 
     $scope.$on("$destroy", function () {
@@ -92,7 +92,7 @@
         $window.location.href = '#/game';
       };
 
-      currentSound = ngAudio.play("../audio/win.mp3"); // returns NgAudioObject
+      currentSound = ngAudio.play("audio/win.mp3"); // returns NgAudioObject
       currentSound.volume = globalVolume;
 
       $scope.$on("$destroy", function () {
@@ -101,7 +101,7 @@
     }]);
 
   app.controller('WelcomeController', ['$scope', 'ngAudio', function ($scope, ngAudio) {
-    $scope.sound = ngAudio.play("../audio/welcome.mp3"); // returns NgAudioObject
+    $scope.sound = ngAudio.play("audio/welcome.mp3"); // returns NgAudioObject
     $scope.sound.volume = globalVolume;
 
     currentSound = $scope.sound;
@@ -138,7 +138,7 @@
   app.controller('GameController',
     ['$scope', '$window', 'ngAudio', function ($scope, $window, ngAudio) {
 
-      currentSound = ngAudio.play("../audio/waiting.mp3"); // returns NgAudioObject
+      currentSound = ngAudio.play("audio/waiting.mp3"); // returns NgAudioObject
       currentSound.volume = globalVolume;
 
       var width = $("#timerkeeper").width();
