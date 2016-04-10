@@ -40,7 +40,8 @@
     ACTION_MESSAGE: 'Пожалуйста, заполните форму и получите подарок',
     FAIL_MESSAGE: 'Попробуйте еще раз…',
     CHANGE_LANGUAGE_BUTTON: 'English',
-    CLICK_FOR_AGAIN:' Нажми, чтобы попробовать еще раз'
+    CLICK_FOR_AGAIN:' Нажми, чтобы попробовать еще раз',
+    GO_TO_GAME_BUTTON:'Начать игру'
   };
 
   var tableEnglish = {
@@ -50,7 +51,8 @@
     ACTION_MESSAGE: 'Please Fill The Form And Collect Your Gift',
     FAIL_MESSAGE: 'You have 1 more chance…',
     CHANGE_LANGUAGE_BUTTON: 'Русский язык',
-    CLICK_FOR_AGAIN:'Click to try again'
+    CLICK_FOR_AGAIN:'Click to try again',
+    GO_TO_GAME_BUTTON:'Start play'
   };
 
   var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio', 'pascalprecht.translate']);
@@ -135,9 +137,9 @@
 
     this.checkState = function () {
       if (globalVolume > 0) {
-        this.changeTo = 'Mute'
+        this.changeTo = 'glyphicon-volume-off'
       } else {
-        this.changeTo = 'Unmute'
+        this.changeTo = 'glyphicon-volume-up'
       }
     };
 
