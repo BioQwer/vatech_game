@@ -156,15 +156,17 @@
       this.checkState();
     };
 
+    var _isRussian = true;
     this.changeLanguage = function () {
-      console.log($translate);
-      if ($translate.langKey == 'ru') {
+      if(_isRussian) {
         $translate.use('en');
-      } else {
-        $translate.use('ru');
+        _isRussian = false;
       }
-      $translate.$nextLang;
-    };
+      else {
+        $translate.use('ru');
+        _isRussian = true;
+      }
+    }
   }]);
 
   app.controller('GameController',
