@@ -36,10 +36,15 @@
 <div class="container" ng-app="app">
   <div ng-view></div>
   <br>
-  <div class="col-md-11"></div>
-  <div class="col-md-1">
-    <button ng-controller="SoundController as vm" class="btn btn-primary" ng-click="vm.changeMute()">{{vm.changeTo}}
-    </button>
+
+  <div ng-controller="GeneralController as vm">
+    <div class="col-md-1">
+      <button class="btn-primary btn" ng-click="vm.changeLanguage()">{{'CHANGE_LANGUAGE_BUTTON'|translate}}</button>
+    </div>
+    <div class="col-md-10"></div>
+    <div class="col-md-1">
+      <button class="btn btn-primary" ng-click="vm.changeMute()">{{vm.changeTo}}</button>
+    </div>
   </div>
 
 </div>
@@ -64,12 +69,6 @@
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-audio/app/angular.audio.js"></script>
 <script src="/bower_components/angular-translate/angular-translate.js"></script>
-<script src="/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-<script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-<script src="/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
-<script src="/bower_components/angular-translate-handler-log/angular-translate-handler-log.js"></script>
-<script src="/bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
