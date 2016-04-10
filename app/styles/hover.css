@@ -1,3 +1,7 @@
 .image-keeper:hover {
   background-color: #26d7ae;
 }
+.btn-block:hover{
+  background-color: #26d7ae;
+  color: white;
+}
