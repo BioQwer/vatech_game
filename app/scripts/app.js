@@ -146,7 +146,7 @@
       var countdown = $("#countdown")
         .countdown360({
           radius: width / 2.5,
-          seconds: 35,
+          seconds: 10,
           label: ['sec', 'secs'],
           strokeStyle: "#26d7ae",
           fontColor: 'white',
