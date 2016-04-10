@@ -33,7 +33,25 @@
     return Math.random() - 0.5;
   }
 
-  var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio']);
+  var tableRussian = {
+    WELCOME_MESSAGE: 'Приглашаем Вас принять участие в игре от VATECH',
+    GAME_MESSAGE: 'Выберите снимок с наилучшим качеством изображения',
+    WIN_MESSAGE: 'Это снимок сделан при помощи EzSensor от VATECH!',
+    ACTION_MESSAGE: 'Пожалуйста, заполните форму и получите подарок',
+    FAIL_MESSAGE: 'Попробуйте еще раз…',
+    CHANGE_LANGUAGE_BUTTON: 'English'
+  };
+
+  var tableEnglish = {
+    WELCOME_MESSAGE: 'Welcome To Vatech Game Zone',
+    GAME_MESSAGE: 'Select The Best Intra-Oral Image Out Of These Six',
+    WIN_MESSAGE: 'That\'s The VATECH EzSensor Image!',
+    ACTION_MESSAGE: 'Please Fill The Form And Collect Your Gift',
+    FAIL_MESSAGE: 'You have 1 more chance…',
+    CHANGE_LANGUAGE_BUTTON: 'Русский язык'
+  };
+
+  var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio', 'pascalprecht.translate']);
 
   app.run(['$rootScope', '$location', '$templateCache', function ($rootScope, $location, $templateCache) {
 
@@ -45,7 +63,11 @@
     $rootScope.appInitialized = true;
   }]);
 
-  app.config(['$routeProvider', function ($routeProvider) {
+  app.config(['$routeProvider', '$translateProvider', function ($routeProvider, $translateProvider) {
+
+    $translateProvider.translations('ru', tableRussian);
+    $translateProvider.translations('en', tableEnglish);
+    $translateProvider.preferredLanguage('ru');
 
     $routeProvider
       .when('/game', {
@@ -111,7 +133,7 @@
     });
   }]);
 
-  app.controller('SoundController', function () {
+  app.controller('GeneralController', ['$translate', function ($translate) {
 
     this.checkState = function () {
       if (globalVolume > 0) {
@@ -132,8 +154,18 @@
         currentSound.volume = globalVolume;
       }
       this.checkState();
-    }
-  });
+    };
+
+    this.changeLanguage = function () {
+      console.log($translate);
+      if ($translate.langKey == 'ru') {
+        $translate.use('en');
+      } else {
+        $translate.use('ru');
+      }
+      $translate.$nextLang;
+    };
+  }]);
 
   app.controller('GameController',
     ['$scope', '$window', 'ngAudio', function ($scope, $window, ngAudio) {
