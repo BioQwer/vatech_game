@@ -5009,7 +5009,7 @@ a.thumbnail.active {
   color: #ffffff;
 }
 .alert {
-  padding: 40px;
+  padding: 20px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -5030,7 +5030,7 @@ a.thumbnail.active {
 }
 .alert-dismissable,
 .alert-dismissible {
-  padding-right: 60px;
+  padding-right: 40px;
 }
 .alert-dismissable .close,
 .alert-dismissible .close {
