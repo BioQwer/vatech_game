@@ -39,7 +39,8 @@
     WIN_MESSAGE: 'Это снимок сделан при помощи EzSensor от VATECH!',
     ACTION_MESSAGE: 'Пожалуйста, заполните форму и получите подарок',
     FAIL_MESSAGE: 'Попробуйте еще раз…',
-    CHANGE_LANGUAGE_BUTTON: 'English'
+    CHANGE_LANGUAGE_BUTTON: 'English',
+    CLICK_FOR_AGAIN:' Нажми, чтобы попробовать еще раз'
   };
 
   var tableEnglish = {
@@ -48,7 +49,8 @@
     WIN_MESSAGE: 'That\'s The VATECH EzSensor Image!',
     ACTION_MESSAGE: 'Please Fill The Form And Collect Your Gift',
     FAIL_MESSAGE: 'You have 1 more chance…',
-    CHANGE_LANGUAGE_BUTTON: 'Русский язык'
+    CHANGE_LANGUAGE_BUTTON: 'Русский язык',
+    CLICK_FOR_AGAIN:'Click to try again'
   };
 
   var app = angular.module('app', ['ngRoute', 'ng', 'ngAnimate', 'ngAudio', 'pascalprecht.translate']);
@@ -56,10 +58,6 @@
   app.run(['$rootScope', '$location', '$templateCache', function ($rootScope, $location, $templateCache) {
 
     $location.path('/');
-    $templateCache.put('templates/welcome.html');
-    $templateCache.put('templates/game.html');
-    $templateCache.put('templates/fail.html');
-    $templateCache.put('templates/win.html');
     $rootScope.appInitialized = true;
   }]);
 
