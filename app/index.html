@@ -33,28 +33,31 @@
     </div>
   </div>
 </nav>
-<div class="container" ng-app="app">
-  <div ng-view></div>
-  <br>
+<div ng-app="app">
+  <div class="vertical-center">
 
-  <div ng-controller="GeneralController as vm">
-    <div class="col-md-1">
-      <button class="btn-primary btn" ng-click="vm.changeLanguage()">{{'CHANGE_LANGUAGE_BUTTON'|translate}}</button>
+    <div ng-view>
     </div>
-    <div class="col-md-10"></div>
-    <div class="col-md-1">
-      <button class="btn btn-primary" ng-click="vm.changeMute()" style="float: right;"><span class="glyphicon" ng-class="vm.changeTo"></span></button>
-    </div>
+
   </div>
-
+  <footer>
+    <div ng-controller="GeneralController as vm" class="container">
+      <div class="col-md-1">
+        <button class="btn-primary btn" ng-click="vm.changeLanguage()">{{'CHANGE_LANGUAGE_BUTTON'|translate}}</button>
+      </div>
+      <div class="col-md-10"></div>
+      <div class="col-md-1">
+        <button class="btn btn-primary" ng-click="vm.changeMute()" style="float: right;"><span class="glyphicon"
+                                                                                               ng-class="vm.changeTo"></span>
+        </button>
+      </div>
+    </div>
+    <div class="container">
+      <p class="text-muted" align="center">©2016 VATECH. All Rights Reserved.</p>
+    </div>
+  </footer>
 </div>
 
-
-<footer class="footer">
-  <div class="container">
-    <p class="text-muted" align="center">©2016 VATECH. All Rights Reserved.</p>
-  </div>
-</footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
