@@ -15,5 +15,8 @@
     "angular-translate-handler-log": "^2.11.0",
     "angular-dynamic-locale": "^0.1.30",
     "angular-i18n": "^1.5.3"
+  },
+  "resolutions": {
+    "angular": "^1.5.3"
   }
 }
